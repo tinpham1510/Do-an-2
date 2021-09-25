@@ -1,0 +1,78 @@
+.Navbar-homepage{
+    width: auto;
+    height: 10vh;
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 1);
+}
+
+.Navbar-homepage .left-navbar{
+    font-size: 30px;
+    padding: 100px;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.Navbar-homepage .right-navbar{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 100px;
+
+}
+
+@media (max-width: 400px) {
+    .Navbar-homepage .left-navbar {
+        padding: 50px;
+    }
+    .Navbar-homepage .right-navbar{
+        padding: 10px;
+    }
+}
+
+.Image-homepage{
+    background: url(../Assets/GettyImages-1162317131-2048x1363.jpg);
+    width: auto;
+    height: 90vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.Banner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 60%;
+    padding: 40px 0;
+    text-align: center;
+    border-top-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #FFF;
+    font-weight: bold;
+    border: 10px inherit #FFF;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.Banner .banner-text{
+    font-size: 25px;
+    
+}
+
+.Banner .banner-descrip{
+    font-size: 16px;
+}
+
+.container-App{
+    height: 100vh;
+    width: auto;
+    z-index: 0;
+
+}

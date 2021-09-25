@@ -1,0 +1,114 @@
+
+.Image-Login{
+    background: url(../Assets/phong-tro-2.jpg);
+    height: 100vh;
+    width: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(4px);
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+}
+
+.Container-login{
+    z-index: 2;
+    width: 45%;
+    height: 72%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 30px 35px;
+}
+
+.Container-login .text-login{
+    font-size: 40px;
+    font-weight: bolder;
+    color: #FFF;
+    margin-bottom: 9%;
+    border-bottom: 4px solid white;
+    display: inline-block;
+    
+}   
+
+.Container-login .inputBx{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-bottom: 5%;
+}
+
+.Container-login .inputBx .name{
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    text-align: left;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.Container-login .inputBx input{
+    width: 55%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 3px solid white;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: white;
+    background: transparent;
+    border-radius: 30px;
+    margin-bottom: 1%;
+}
+
+.Container-login .inputBx input[type="submit"]{
+    background: #ff4584;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight:bold;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    width: 28%;
+
+}
+.Container-login .inputBx input[type="submit"]:hover{
+    background: #f53677;
+}
+
+.Container-login .sci{
+    display: flex;
+    justify-content: center;
+    padding-left: 2px;
+}
+
+.Container-login .sci a{
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    border-radius: 10px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.Container-login .sci a:hover{
+    background: #ff4584;
+    cursor: pointer;
+
+}
+
+.Container-login .sci a i{
+    color: #e7f2f4;
+    padding: 10px 12px;
+    font-size: 20px;
+}
