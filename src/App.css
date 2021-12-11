@@ -1,3 +1,5 @@
+   
+@import url("https://cdn.syncfusion.com/ej2/material.css");
 .App {
   text-align: center;
 }
@@ -26,6 +28,13 @@
 
 .App-link {
   color: #61dafb;
+}
+ul{
+  list-style: none;
+}
+
+li, a, span{
+  text-decoration: none;
 }
 
 @keyframes App-logo-spin {

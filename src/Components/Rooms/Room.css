@@ -1,0 +1,52 @@
+.room_page{
+    
+   
+}
+
+.room_page .room_content{
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    padding-top: 2%;
+
+}
+
+.room_page .room_page_container{
+    background-color: rgba(0, 0, 0, 0.15);
+    height: 110vh;
+    width: 1100px;
+    margin: 2% 8% 0 8%;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    display: block;
+}
+
+.room_page .room_page_container .room__container_top{
+    height: 100px;
+    width: 1050px;
+    margin:2%;
+    box-sizing: border-box;
+    position: absolute;
+    border-bottom: 3px solid white;
+    padding-right: 3%;
+}
+
+.room_page .room_page_container .room__container_top .room_page__text{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.room_page .room_page_container .room__container_top .room_page__text .room__text_left{
+    width: 27%;
+    justify-content: space-between;
+    display: flex;
+}
+.room_page .room_page_container .room__container_top .room_page__text .room__text_right{
+    width: 42%;
+    justify-content: space-between;
+    display: flex;
+}
+.room_page .room_page_container .room__container_bottom{
+    padding: 13% 3% 0 3%;
+}

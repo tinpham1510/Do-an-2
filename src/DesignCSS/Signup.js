@@ -28,8 +28,8 @@ const Signup = () => {
                         <div className="inputBx">
                             <input type="submit" value="Sign up" name=""/>
                         </div>
-                            <p style={{color: "whitesmoke", fontSize:"16px", marginTop: "-1%"}}>Bạn đã có tài khoản? <a href="/">
-                                <Link to="/Signup">
+                            <p style={{color: "whitesmoke", fontSize:"16px", marginTop: "-1%"}}>Bạn đã có tài khoản? <a href="/Login">
+                                <Link to="../Login">
                                 Đăng nhập
                                 </Link>
                                 </a></p>

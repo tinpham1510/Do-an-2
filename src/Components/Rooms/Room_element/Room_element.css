@@ -1,0 +1,66 @@
+.Element__page{
+    background-color: white;
+    width: 1000px;
+    height: 350px;
+    margin-left: 2%;
+
+}
+
+.Element__page .Element__page_top{
+    display: flex;
+    margin: 3%;
+    width: 94%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    height: 60px;
+    justify-content: space-between;
+}
+
+.Element__page .Element__page_top .Element__page__top_left{
+    display: flex;
+    justify-content: space-between;
+    width: 29%;
+    align-items: center;
+}
+
+.Element__page .Element__page_top .Element__page__top_right{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.Element__page .Element__page_bottom{
+    display: grid;
+    width: 94%;
+    margin: 3%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.Element__page .Element__page_bottom .Element__page__container{
+    height: 210px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width: 220px;
+}
+
+.Element__page_bottom .Element__page__container .Element__container_content .Element__container__con{
+    display: flex;
+    align-items: center;
+    padding: 5% 3%;
+}
+
+
+.Element__page_bottom .Element__page__container .Element__container_content .Element__container__button{
+    align-items: center;
+    padding: 5% 3%;
+    display: flex;
+}
+
+.Element__page_bottom .Element__page__container .Element__container_content .Element__container__details{
+    align-items: center;
+    padding: 0 3%;
+    display: flex;
+}
+
+

@@ -1,7 +1,14 @@
 import React from 'react';
 import './Login.css'
-import {  BrowserRouter as  Link } from 'react-router-dom';
+import {  BrowserRouter as  Link, useHistory} from 'react-router-dom';
 const Login = () => {
+    let history = useHistory();
+    const OnHandlerClick = e =>{
+        e.preventDefault();
+        if(document.getElementById("Username").value === "tinpham1510" && document.getElementById("Password").value=== "12345678"){
+            history.push("/Homepage/Dashboard")
+        }
+    }
     return (
         <div className="login-page">
             <div className="Image-Login">
@@ -12,7 +19,7 @@ const Login = () => {
             <h1 className="text-login">
                 Home
             </h1>
-            <form>
+            <form onSubmit={OnHandlerClick}>
                 <div className="inputBx">
                             <h6 className="name">Username: </h6>
                             <input type="text" id="Username" name="Username"></input>
