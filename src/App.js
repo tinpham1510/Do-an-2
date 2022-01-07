@@ -7,26 +7,51 @@ import Dashboard from './Components/Dashboard/Dashboard'
 import User from './Components/User/User'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Signup from './DesignCSS/Signup';
-import * as actions from './redux/actions';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import axios from 'axios'
+import AuthContextProvider from './contexts/AuthContext'
+import RoomDetail from './Components/Rooms/Room_element/Room__detail/Room__detail';
+import RoomContextProvider, { RoomContext } from './contexts/RoomsContext';
+import CustomerContextProvider from './contexts/CustomerContext';
+import ServiceContextProvider from './contexts/ServiceContext';
+import PostContextProvider from './contexts/PostContext';
+import ReceiptContextProvider from './contexts/ReceiptContext';
+import TotalContextProvider from './contexts/TotalContext';
+axios.defaults.withCredentials = true;
 function App() {
-  const dispatch = useDispatch();
-  
-  dispatch(actions.getPosts.getPostsRequest());
+
   return (
-    <div className="App">
-      
-<Router>
-        
-        <Switch>
-          <Route key="Homepage" path="/Homepage" component={Homepage}/>
-          <Route exact path ="/" component={Login}/>
-          <Route key ="Login" exact path="/Login" component={Login}/>
-          <Route key="Signup" exact path="/Signup" component={Signup}/>
-          </Switch>
-        </Router>
-        
-    </div>
+    <AuthContextProvider>
+      <PostContextProvider>
+        <RoomContextProvider>
+          <CustomerContextProvider>
+            <ServiceContextProvider>
+              <ReceiptContextProvider>
+                <TotalContextProvider>
+                <div className="App">
+        <Router>
+          
+          <Switch>
+          <Route key="home" path="/" render={()=>{
+              return localStorage.getItem('accessToken') ? <Homepage/> : <Login/>
+              }}></Route>
+
+            <Route key="Homepage" path ="/Homepage" component={Homepage}/>
+            <Route key ="login" exact path="/Login" component={Login}/>
+            <Route key="signup" exact path="/Signup" component={Signup}/>
+          
+            </Switch>
+          </Router>
+          
+      </div>
+                </TotalContextProvider>
+              </ReceiptContextProvider>
+            </ServiceContextProvider>
+          </CustomerContextProvider>
+        </RoomContextProvider>
+      </PostContextProvider>
+    </AuthContextProvider>
+    
   );
 }
 

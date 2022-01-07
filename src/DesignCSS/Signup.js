@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Signup.css'
 import {  BrowserRouter as Link  } from 'react-router-dom'
+import { apiUrl } from '../contexts/constant';
+import axios from 'axios';
+import Homepage from '../Homepage/Homepage';
 const Signup = () => {
+    const [success, setSuccess] = useState(false)
+    const OnHandlerClick = async e =>{
+        e.preventDefault();
+        
+        
+    }
+
     return (
+        <>
+        {
+            success? <Homepage/>:
         <div className="login-page">
             <div className="Image-Login">
 
@@ -12,7 +25,7 @@ const Signup = () => {
             <h1 className="text-login">
                 Sign up
             </h1>
-            <form>
+            <form onSubmit={OnHandlerClick}>
                 <div className="inputBx">
                             <h6 className="name">Username: </h6>
                             <input type="text" id="Username" name="Username"></input>
@@ -45,6 +58,9 @@ const Signup = () => {
 
 
         </div>
+}
+        </>
+        
     );
 };
 

@@ -18,18 +18,33 @@
 
 .Container .container_dash{
     background: rgba(0, 0, 0, 0.0);
-    height: 311px;
+    height: 360px;
     border-radius: 5px;
     width: 600px;
     margin-left: 3%;
 }
 
 .Container .container_dash .container__dashboard{
-    height: 300px;
+    height: 350px;
     width: 591px;
     background: rgba(0, 0, 0, 0.1);
 }
 
+.Container .container_dash .container__dashboard .container___title{
+   padding-top: 10px;
+   padding-bottom: 10px;
+   color: #275E66;
+   font-size: 25px;
+   text-align: left;
+   padding-left: 30px;
+   border-bottom: 2px solid white;
+ }
+
+.Container .container_dash .container__dashboard .container___dash{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
 .container_dash .container__dashboard .container__img{
     height: 90%;
     width: 90%;
@@ -37,6 +52,30 @@
     object-fit: cover;
 }
 
+
+.container___dash th {
+    font-size: 15px;
+    font-weight: 100;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container___dash thead {
+    background-color: #3bb3bb;
+    color: white;
+    text-align: center;
+}
+
+.container___dash tbody {
+    font-size: 15px;
+    background-color: white;
+}
+
+.container___dash td {
+    text-align: center;
+    justify-content: center;
+    width: 21%;
+}
 @media (max-width:950px) {
     .Container{
         grid-template-columns: repeat(1, 1fr);

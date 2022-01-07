@@ -1,16 +1,46 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css'
 import {  BrowserRouter as  Link, useHistory} from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
+import axios from 'axios';
+import Homepage from '../Homepage/Homepage';
+import Dashboard from '../Components/Dashboard/Dashboard';
 const Login = () => {
     let history = useHistory();
-    const OnHandlerClick = e =>{
-        e.preventDefault();
-        if(document.getElementById("Username").value === "tinpham1510" && document.getElementById("Password").value=== "12345678"){
-            history.push("/Homepage/Dashboard")
-        }
-    }
+
+    const [success, setSuccess] = useState(false)
+    const { loginUser } = useContext(AuthContext)
+
+	// Local state
+	const [loginForm, setLoginForm] = useState({
+		username: '',
+		password: ''
+	})
+
+	const [alert, setAlert] = useState(null)
+
+	const { username, password } = loginForm
+
+	const onChangeLoginForm = event =>
+		setLoginForm({ ...loginForm, [event.target.name]: event.target.value })
+
+	const login = async event => {
+		event.preventDefault()
+
+		try {
+			const loginData = await loginUser(loginForm)
+			if (loginData.success) {
+			}
+
+		} catch (error) {
+			console.log(error)
+		}
+	}
+   
     return (
-        <div className="login-page">
+        <>
+        { success ? <Homepage/>:
+         <div className="login-page">
             <div className="Image-Login">
 
             </div>
@@ -19,14 +49,14 @@ const Login = () => {
             <h1 className="text-login">
                 Home
             </h1>
-            <form onSubmit={OnHandlerClick}>
+            <form onSubmit={login}>
                 <div className="inputBx">
                             <h6 className="name">Username: </h6>
-                            <input type="text" id="Username" name="Username"></input>
+                            <input type="text" id="Username" name="username" value={username} onChange={onChangeLoginForm} ></input>
                         </div>
                         <div className="inputBx">
                             <h6 className="name">Password: </h6>
-                            <input type="password" id="Password" name="Password"></input>
+                            <input type="password" id="Password" name="password" value={password} onChange={onChangeLoginForm} ></input>
                         </div>
                         <div className="inputBx">
                             <input type="submit" value="Login" name=""/>
@@ -48,6 +78,9 @@ const Login = () => {
 
 
         </div>
+}
+        </>
+       
     );
 };
 

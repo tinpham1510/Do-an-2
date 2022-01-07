@@ -25,8 +25,8 @@
 .Element__page .Element__page_top .Element__page__top_right{
     display: flex;
     align-items: center;
-    width: 50%;
-    justify-content: space-between;
+    width: 36%;
+    justify-content: right;
 }
 
 .Element__page .Element__page_bottom{
@@ -38,7 +38,7 @@
 }
 
 .Element__page .Element__page_bottom .Element__page__container{
-    height: 210px;
+    height: 215px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     width: 220px;

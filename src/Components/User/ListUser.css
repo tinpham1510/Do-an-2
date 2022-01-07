@@ -1,0 +1,76 @@
+.list_page{
+    
+}
+
+.list_page .list__page_content{
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    padding-top: 2%;
+}
+
+.list_page .list__page_container{
+    background-color: rgba(0, 0, 0, 0.05);
+    height: 80vh;
+    width: 1100px;
+    margin: 2% 8% 0 8%;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+    display: block;
+}
+
+.list_page .list__page_container .list__container_top{
+    display: flex;
+    height: 60px;
+    width: 1050px;
+    margin:2%;
+    box-sizing: border-box;
+    position: absolute;
+    border-bottom: 3px solid white;
+    padding-right: 3%;
+}
+
+.list_page .list__page_container .list__container_top .list__container_content{
+    color:#275E66;
+    font-size: 26px;
+    align-items: center;
+    display: flex;
+    width: 30%;
+}
+
+.list_page .list__page_container .list__container_top .list__container_button{
+    display: flex;
+    width: 26%;
+    justify-content: right;
+    align-items: center;
+    margin-left: 50%;
+    
+}
+.list_page .list__page_container .list__container_bottom{
+    padding-top: 7%;
+}
+
+
+.list__container_bottom th {
+    font-size: 15px;
+    font-weight: 100;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.list__container_bottom thead {
+    background-color: #3bb3bb;
+    color: white;
+    text-align: center;
+}
+
+.list__container_bottom tbody {
+    font-size: 15px;
+    background-color: white;
+}
+
+.list__container_bottom td {
+    text-align: center;
+    justify-content: center;
+    width: 21%;
+}

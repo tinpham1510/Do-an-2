@@ -1,0 +1,39 @@
+.bill__container{
+    height: 300px;
+}
+
+.bill__container .bill__container__text{
+    color: #275E66;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.bill__container .bill__container__title{
+    color: #275E66;
+    font-size: 26px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.bill__container .bill__container__content{
+    color: #275E66;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid black;
+}
+
+.bill__container .bill__container__member{
+    display: flex;
+    justify-content: space-between;
+    color: #275E66;
+}
+
+.bill__container .bill__container__total{
+    border-bottom: 2px solid black;
+    border-top:  2px solid black;
+    display: flex;
+    justify-content: space-between;
+}

@@ -202,10 +202,10 @@ body{
 
 .home_body{
     width: 1200px;
-    height: 150vh;
+    height: 75vh;
     display: block;
     position: relative;
-    padding: 4% 0;
+    padding: 3% 3%;
 
     
 }
@@ -214,7 +214,7 @@ body{
     display: grid;
     grid-template-columns: repeat(1 ,1fr);
     width: 1200px;
-    height: 100vh;
+    height: 70vh;
     transform: translateX(20%);
     position:absolute;
     margin: 0;

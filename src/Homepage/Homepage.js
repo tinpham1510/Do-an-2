@@ -1,17 +1,26 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import img1 from '../Assets/e651646ded354313b22571fbb9c22118.png'
 import img2 from '../Assets/phong-tro-2.jpg'
 import img3 from '../Assets/31_104880.png'
 import './Homepage.css';
 import Slider from 'react-slick';
-import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom'; 
+import { BrowserRouter as Router, Route, Switch, Link, Redirect, useHistory } from 'react-router-dom'; 
 import Dashboard from '../Components/Dashboard/Dashboard';
 import User from '../Components/User/User';
 import Rooms from '../Components/Rooms/Room';
 import Services from '../Components/Services/Service'
+import { apiUrl } from '../contexts/constant';
+import { AuthContext } from '../contexts/AuthContext';
+import RoomContextProvider from '../contexts/RoomsContext';
+import ListRoom from '../Components/ListRoom/ListRoom';
+import Receipts from '../Components/Receipts/Receipts';
+import Electric from '../Components/Electric/Electric';
+import Water from '../Components/Water/Water';
+import ListUser from '../Components/User/ListUser';
+import Total from '../Components/Total/Total';
 const Homepage = () => {
-    const [ID, setID] = useState();
+    const history = useHistory()
     const settings = {
         dots: true,
         infinite: true,
@@ -19,10 +28,28 @@ const Homepage = () => {
         slidesToShow: 3,
         slidesToScroll: 3
       };
+      const [ID, setID] = useState([]);
+    const {
+        logoutUser
+    } = useContext(AuthContext)
+    
     useEffect(()=>{
-        localStorage.setItem("ID", ID);
-        
-    })
+        axios({
+            method: "GET",
+            url: `${apiUrl}/auth`,
+            headers: {
+                'Authorization': 'Bearer '+ localStorage.getItem('accessToken')
+            },
+            withCredentials: true
+
+        }).then((resp)=>{
+            setID(resp.data.posts)
+        })
+    },[])
+    function HandleLogout (){
+        logoutUser()
+        history.push('/Login')
+    }
     function ScaleNav(){
         /*document.getElementById("sidebar").style.width = "80px";
             document.getElementById("logo_name").style.fontSize= "0px";
@@ -89,16 +116,7 @@ const Homepage = () => {
     }
 
     function HandleClick (){
-        if(ID == 1){
-            ScaleNav();
-            setID(2);
-            
-            
-        }
-        else if(ID == 2){
-            CloseNav();
-            setID(1);
-        }
+
     }
     return (
         <body>
@@ -118,14 +136,15 @@ const Homepage = () => {
             </div>
             <ul>
                 <li id="li">
-                    <a href="/Homepage/Dashboard" id="button_image">
+                    <a href = "/Homepage/Dashboard" id="button_image">
+                       
                     <i class='bx bxs-bar-chart-alt-2' id="bx" ></i>
                     <span className="links_name" id="span">Trang chủ</span>
                         </a>
                     <span className="tooltip" id="tooltip">Dashboard</span>                    
                 </li>
                 <li id="li">
-                    <a href="/Homepage/Rooms" id="button_image">
+                    <a href = "/Homepage/Rooms">
                     <i class='bx bxs-data' id="bx"></i>
                     <span className="links_name" id="span">Phòng</span>
                         </a>
@@ -134,47 +153,47 @@ const Homepage = () => {
                 <li>
                     <a href="/Homepage/User">
                     <i class='bx bxs-user' ></i>
-                    <span className="links_name">Người dùng</span>
+                    <span className="links_name">Khách thuê</span>
                         </a>
                         <span className="tooltip">User</span>                    
                 </li>
                 <li>
-                    <a href="/Homepage/Services">
+                    <a href ="/Homepage/Services">
                     <i class='bx bxs-dashboard' ></i>
                     <span className="links_name">Dịch vụ</span>
                         </a>
                         <span className="tooltip">Detail</span>                    
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/Homepage/Receipts">
                     <i class='bx bx-file' ></i>
-                    <span className="links_name">Phiếu nhập</span>
+                    <span className="links_name">Phiếu thu</span>
                         </a>
                     <span className="tooltip">Info</span>                    
                 </li>
                 <li>
                     <a href="#">
                     <i class='bx bx-diamond' ></i>
-                    <span className="links_name">Chi phí</span>
+                    <span className="links_name">Hóa đơn</span>
                         </a>
                         <span className="tooltip">Fee</span>                    
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/Homepage/Electric">
                     <i class='bx bxs-bolt' ></i>
                     <span className="links_name">Chỉ số điện</span>
                         </a>
                         <span className="tooltip">Chỉ số điện</span>                    
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/Homepage/Water">
                     <i class="fas fa-shower"></i>
                     <span className="links_name">Chỉ số nước</span>
                         </a>
                         <span className="tooltip">chỉ số nước</span>                    
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/Homepage/Total">
                     <i class="fas fa-calculator"></i>
                     <span className="links_name">Tính tiền</span>
                         </a>
@@ -186,17 +205,17 @@ const Homepage = () => {
                         <div className="profile_details">
                             <img src={img2}/>
                             <div className="name_jobs">
-                                
+                               
                                 <div className="name">
-                                    Jin Zero
+                                    {ID.username}
                                 </div>
                                 <div className="Jobs">
-                                    Web designer
+                                    Admin
                                 </div>
 
                             </div>
                         </div>
-                        <button className="btn_menu1" >
+                        <button  onClick={HandleLogout} className="btn_menu1" >
                         <i class='bx bx-log-out' id="log_out" ></i>
                             </button>
                        
@@ -210,17 +229,22 @@ const Homepage = () => {
         </div>
         <div className="home_body">
             <div className="body_content">
-
-            <Switch>
-
-            <Route key="Dashboard" exact path="/Homepage/Dashboard" component={Dashboard}/>
-            <Route key ="User"exact path="/Homepage/User" component={User}/>
-            <Route key="Rooms" exact path="/Homepage/Rooms" component={Rooms}/>
-            <Route key="Services" exact path="/Homepage/Services" component={Services}/>
-            </Switch>
-            
-            
-
+        <Router>
+        <Switch>
+                <Route key="Dashboard" exact path="/" component={Dashboard}/>
+                <Route key="Dashboard" exact path="/Homepage/Dashboard" component={Dashboard}/>
+                <Route key ="User"exact path="/Homepage/User" component={User}/>
+                <Route key="ListUser" exact path ="/Homepage/List" component={ListUser} />
+                <Route key="Rooms" exact path="/Homepage/Rooms" component={Rooms}/>
+                <Route key="Services" exact path="/Homepage/Services" component={Services}/>
+                <Route key="ListRoom" exact path ="/Homepage/ListRoom" component={ListRoom} />
+                <Route key="Receipts" exact path ="/Homepage/Receipts" component={Receipts} />
+                <Route key="Electric" exact path ="/Homepage/Electric" component={Electric} />
+                <Route key="Water" exact path ="/Homepage/Water" component={Water} />
+                <Route key="Total" exact path ="/Homepage/Total" component={Total} />
+                </Switch>    
+        </Router>
+                
             </div>
         </div>
         

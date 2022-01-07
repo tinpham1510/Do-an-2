@@ -1,0 +1,23 @@
+.listcustomer__container_bottom th {
+    font-size: 15px;
+    font-weight: 100;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.listcustomer__container_bottom thead {
+    background-color: #3bb3bb;
+    color: white;
+    text-align: center;
+}
+
+.listcustomer__container_bottom tbody {
+    font-size: 15px;
+    background-color: white;
+}
+
+.listcustomer__container_bottom td {
+    text-align: center;
+    justify-content: center;
+    width: 21%;
+}
