@@ -6,6 +6,7 @@ import { apiUrl } from '../../contexts/constant';
 import { CustomerContext } from '../../contexts/CustomerContext';
 import { RoomContext } from '../../contexts/RoomsContext';
 import { TotalContext } from '../../contexts/TotalContext';
+import ToastJS from '../ToastMessage/Toast';
 
 import './AddRent.css';
 import Listcustomer from './ListCustomer';
@@ -72,6 +73,8 @@ const Addrent = ({_id, modal, setModal}) => {
 
     }
 
+    const [showToast, setToast] = useState(false)
+
     function Save()
     {
         let token = localStorage.getItem("accessToken")
@@ -122,12 +125,13 @@ const Addrent = ({_id, modal, setModal}) => {
         ).then(resp=>{
         })
 
-
+        setToast(true)
         setModal(false)
     }
     return (
         <div className='AddRent__page'>
             <div className='AddRent__page__container'>
+                <ToastJS showToast={showToast} setToast={setToast}/>
             <Offcanvas show={modal} onHide={setModal} backdrop="static"
         keyboard={false} placement='end'>
         <Offcanvas.Header closeButton>

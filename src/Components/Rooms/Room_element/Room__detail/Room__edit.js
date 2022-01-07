@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Modal, Form, Button, Col, Row, Alert } from 'react-bootstrap';
 import { apiUrl } from '../../../../contexts/constant';
 import { RoomContext } from '../../../../contexts/RoomsContext';
+import ToastUpdate from '../../../ToastMessage/Toast__update';
 
 const RoomEdit = ({_id, modal, setModal}) => {
 
@@ -43,9 +44,10 @@ const RoomEdit = ({_id, modal, setModal}) => {
         const message = await updateRooms(updatedRoom)
         alert(message.message)
         setModal(false)
-
+        setToast(true)
     }
-
+    
+    const [showToast, setToast] = useState(false)
     const closeDialog = () => {
 		setUpdatedRoom(room)
 		setModal(false)
@@ -53,6 +55,7 @@ const RoomEdit = ({_id, modal, setModal}) => {
 
     return (    
         <>
+        <ToastUpdate setToast={setToast} showToast={showToast}/>
         { modal?
         <div className='room__detail'>
             <Modal

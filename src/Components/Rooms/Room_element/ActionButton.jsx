@@ -141,9 +141,7 @@ const Actionbutton = ({_id, needButton, name}) => {
         
         :
         <> 
-        <button onClick={handleClick} className="btn btn-primary mr-2" style={{color: "white"}}>
-                 Xem chi tiết
-            </button>
+
             </>
              
 }

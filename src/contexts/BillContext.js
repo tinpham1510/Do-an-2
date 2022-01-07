@@ -84,7 +84,6 @@ const BillContextProvider = ({children}) =>{
         getBills, 
         deleteBills, 
         findBills, 
-        getBillsId,
         addBills,
         updateBills
     }

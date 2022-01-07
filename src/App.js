@@ -17,6 +17,7 @@ import ServiceContextProvider from './contexts/ServiceContext';
 import PostContextProvider from './contexts/PostContext';
 import ReceiptContextProvider from './contexts/ReceiptContext';
 import TotalContextProvider from './contexts/TotalContext';
+import BillContextProvider from './contexts/BillContext';
 axios.defaults.withCredentials = true;
 function App() {
 
@@ -28,22 +29,22 @@ function App() {
             <ServiceContextProvider>
               <ReceiptContextProvider>
                 <TotalContextProvider>
-                <div className="App">
+                  <BillContextProvider>
+                  <div className="App">
         <Router>
           
           <Switch>
-          <Route key="home" path="/" render={()=>{
-              return localStorage.getItem('accessToken') ? <Homepage/> : <Login/>
-              }}></Route>
-
-            <Route key="Homepage" path ="/Homepage" component={Homepage}/>
+            <Route key="Homepage" exact path ="/Homepage" component={Homepage}/>
             <Route key ="login" exact path="/Login" component={Login}/>
             <Route key="signup" exact path="/Signup" component={Signup}/>
-          
+            <Route key="home" path="/" render={()=>{
+              return localStorage.getItem('accessToken') ? <Homepage/> : <Login/>
+              }}></Route>
             </Switch>
           </Router>
           
       </div>
+                  </BillContextProvider>
                 </TotalContextProvider>
               </ReceiptContextProvider>
             </ServiceContextProvider>

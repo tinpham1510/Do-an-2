@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Route, Switch, Link, Redirect, useHistory } fr
 import { RoomContext } from '../../contexts/RoomsContext';
 import RoomAdd from './Room_element/Room__detail/Room__add';
 import RoomContainer from './Room_element/Room_container';
+import axios from 'axios';
+import { apiUrl } from '../../contexts/constant';
+import ToastJS from '../ToastMessage/Toast';
 
 const Room = () => {
     const history = useHistory()
@@ -22,11 +25,13 @@ const Room = () => {
     const {
         roomState : {rooms, roomsLoading},
         getRooms,
-        getRoomsName
+        getRoomsName,
+        getRoomsStatus
 
     } = useContext(RoomContext)
     useEffect(()=>{ 
-        if(name === '')
+        let idStatus = document.getElementById('hello').value;
+        if(name === '' && idStatus === '-Tình trạng phòng-')
         {
             getRooms()
         }
@@ -36,6 +41,39 @@ const Room = () => {
             setItem(true)
         }
     })
+
+    
+
+    const [totalNone, setNone] = useState(0)
+    const [totalNone1, setNone1] = useState(0)
+    let none = 'còn trống'
+    let none1 = 'Đang thuê'
+    useEffect(()=>{
+        axios({
+            method: "GET",
+            url: `${apiUrl}/rooms/status${none}`,
+            headers:{
+                'Authorization': 'Bearer ' + localStorage.getItem("accessToken") ,
+            },
+            withCredentials: true
+        })
+        .then(resp=>{
+            setNone(parseInt(resp.data.total))
+        })
+
+        axios({
+            method: "GET",
+            url: `${apiUrl}/rooms/status${none1}`,
+            headers:{
+                'Authorization': 'Bearer ' + localStorage.getItem("accessToken") ,
+            },
+            withCredentials: true
+        })
+        .then(resp=>{
+            setNone1(parseInt(resp.data.total))
+        })
+    })
+
     function handleClickAdd(){
         if(modal1)
         {
@@ -49,12 +87,21 @@ const Room = () => {
     }
 
 
+    useEffect(()=>{
+        let idStatus = document.getElementById('hello').value;
+        if(idStatus!='-Tình trạng phòng-')
+        {
+            getRoomsStatus(idStatus)
+        }
+    })
+
     const { name } = value
     const HandleChane = e =>{
         e.preventDefault()
         setValue({...value, [e.target.name]: e.target.value})
     }
 
+    const [showToast, setToast] = useState(false)
     const HandleFind = e =>{
         e.preventDefault()
         getRoomsName(name)
@@ -82,10 +129,10 @@ const Room = () => {
                     <Row className="align-items-center">
                     <Col sm={3}>
                         <Form.Group controlId="formGridState">
-                                <Form.Select defaultValue="Choose..." >
+                                <Form.Select defaultValue="Choose..." id='hello' >
                                     <option>-Tình trạng phòng-</option>
-                                    <option>Trống</option>
-                                    <option>Đã thuê</option>
+                                    <option>còn trống</option>
+                                    <option>Đang thuê</option>
                                 </Form.Select>
                                 
                             
@@ -115,19 +162,16 @@ const Room = () => {
                         <div className="room_page__text">
                                 <div className="room__text_left">
                                     <div>
-                                        Trống: 0 |
+                                        Trống: {totalNone} |
                                     </div>
                                     <div>
-                                        Đã thuê: 0 |
+                                        Đã thuê: {totalNone1} |
                                     </div>
                                     <div>
                                         Chưa trả phí: 0 |
                                     </div>
                                 </div>
                                 <div className="room__text_right">
-                                <Button variant="warning">
-                                    Chi tiết phòng
-                                </Button>
                                 <Button onClick={ChangePage} >
                                     Phòng
                                 </Button>

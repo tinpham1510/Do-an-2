@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { apiUrl } from '../../contexts/constant';
 import { TotalContext } from '../../contexts/TotalContext';
+import ToastUpdate from '../ToastMessage/Toast__update';
 
 const Addbill = ({modal, setModal}) => {
     const {
@@ -36,14 +37,18 @@ const Addbill = ({modal, setModal}) => {
                 'Authorization': 'Bearer ' + localStorage.getItem("accessToken") ,
             },
         })
+        setToast(true)
         setModal(false)
     }
 
+    const [showToast, setToast] = useState(false)
     const HandleClose = ()=>{
         setModal(false)
     }
+
     return (
         <div>
+            <ToastUpdate showToast={showToast} setToast={setToast}/>
         <Modal
    show={modal}
    onHide={setModal}

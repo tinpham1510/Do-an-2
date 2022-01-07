@@ -4,6 +4,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import { apiUrl } from '../../contexts/constant';
 import { postContext } from '../../contexts/PostContext';
 import { RoomContext } from '../../contexts/RoomsContext';
+import ToastUpdate from '../ToastMessage/Toast__update';
 
 const ElectricEdit = ({_id, modal, setModal}) => {
 
@@ -58,14 +59,16 @@ const ElectricEdit = ({_id, modal, setModal}) => {
        })
 
        setModal(false)
-
+       setToast(true)
     }
+    const [showToast, setToast] = useState(false)
 
     const HandleClose = () =>{
         setModal(false)
     }
     return (
         <div>
+            <ToastUpdate showToast={showToast} setToast={setToast} />
         <Modal
    show={modal}
    onHide={setModal}

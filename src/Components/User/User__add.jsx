@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Form, Modal, Row, Col } from 'react-bootstrap';
 import { CustomerContext } from '../../contexts/CustomerContext';
+import ToastJS from '../ToastMessage/Toast';
 
 const UserAdd = ({modal, setModal}) => {
     const [check, setCheck] = useState(false)
@@ -24,6 +25,7 @@ const UserAdd = ({modal, setModal}) => {
         e.preventDefault()
         const message = await addCustomers(add)
         setModal(false)
+        setToast(true)
         Clear()
     }
     function Clear()
@@ -39,6 +41,8 @@ const UserAdd = ({modal, setModal}) => {
         setModal(false)
         setCheck(false)
     }
+
+    const [showToast, setToast] = useState(false)
     function CheckBranch(){
         if(name === '')
         {
@@ -47,6 +51,7 @@ const UserAdd = ({modal, setModal}) => {
     }
     return (
         <div>
+            <ToastJS showToast={showToast} setToast={setToast}/>
              <Modal
         show={modal}
         onHide={setModal}

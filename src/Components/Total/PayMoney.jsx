@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { TotalContext } from '../../contexts/TotalContext';
+import ToastUpdate from '../ToastMessage/Toast__update';
 
 const Paymoney = ({modal, setModal}) => {
     const day = Date.now()
@@ -31,16 +32,18 @@ const Paymoney = ({modal, setModal}) => {
         })
         setModal(false)
     }
-    
+    const [showToast, setToast] = useState(false)
     const Save = async e =>{
         e.preventDefault()
         const message = await updateTotals(add)
         alert(message.message)
         Clear()
         setModal(false)
+        setToast(true)
     }
     return (
         <div>
+        <ToastUpdate showToast={showToast} setToast={setToast}/>
         <Modal
    show={modal}
    onHide={setModal}

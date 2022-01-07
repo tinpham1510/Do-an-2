@@ -5,10 +5,12 @@ import { apiUrl } from '../../../../contexts/constant';
 import './Room__add.css'
 import { useHistory } from 'react-router-dom';
 import { RoomContext } from '../../../../contexts/RoomsContext';
+import ToastJS from '../../../ToastMessage/Toast';
 const RoomAdd = ({modal, setModal}) => {
     const history = useHistory()
     const [room, setID] = useState([]);
     const {addRooms} = useContext(RoomContext)
+    const [showToast, setToast] = useState(false)
     const [addform, setAdd] = useState({
         name: '',
         description: '',
@@ -48,6 +50,7 @@ const RoomAdd = ({modal, setModal}) => {
         const success = await addRooms(addform)
         alert(success.message)
         setModal(false)
+        setToast(true)
         Clear()
     }
 
@@ -66,6 +69,7 @@ const RoomAdd = ({modal, setModal}) => {
     }
     return (
         <>
+        <ToastJS showToast={showToast} setToast={setToast}/>
         { modal?
         <div className='room__detail'>
             <Modal

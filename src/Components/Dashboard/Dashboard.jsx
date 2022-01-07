@@ -190,7 +190,7 @@ const series1= [{
                                             <tr>
                                                 <th>Tầng</th>
                                                 <th>Phòng</th>
-                                                <th>Giá (VND)</th>
+                                                <th>Giá (VNĐ)</th>
                                                 <th>Tình trạng</th>
                                             </tr>
                                     </thead>

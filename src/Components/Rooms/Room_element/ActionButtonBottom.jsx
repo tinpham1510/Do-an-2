@@ -25,7 +25,10 @@ import WaterEdit from '../../Water/Water__edit';
 import WaterDelete from '../../Water/Water__delete';
 import Deletemoney from '../../Total/DeleteMoney';
 import Bill from '../../Bill/Bill';
-const Actionbuttonbottom = ({_id, isService, isCustomer, isReceipt, isTotal, isValueE, isValueW}) => {
+import { BillContext } from '../../../contexts/BillContext';
+import DetailBill from '../../Detail/Detail__bill';
+
+const Actionbuttonbottom = ({_id, isService, isCustomer, isReceipt, isTotal, isValueE, isValueW, isBill}) => {
     const history = useHistory()
     const [modal, setModal] = useState(false);
     const [modal1, setModal1] = useState(false);
@@ -166,6 +169,15 @@ const Actionbuttonbottom = ({_id, isService, isCustomer, isReceipt, isTotal, isV
         findTotals(totalId)
         setModal3(true)
     }
+    /// bill dettail
+
+    const {
+        findBills
+    } = useContext(BillContext)
+    const findMember = billId=>{
+        findBills(billId)
+        setModal(true)
+    }
     return (
         <>
         {
@@ -279,6 +291,15 @@ const Actionbuttonbottom = ({_id, isService, isCustomer, isReceipt, isTotal, isV
                                    </div>
                </Button>
            </div>
+            : isBill?
+            <div style={{display: "flex"}}>
+                <DetailBill modal={modal} setModal={setModal}/>
+            <Button  variant="secondary" onClick={findMember.bind(this,_id)}  style={{height: "30px", width:"80px",marginRight:"3%",alignItems:"center"}}>
+                                <div style={{fontSize: "12px"}}>
+                                    Chi tiết
+                                </div>
+            </Button>
+        </div>
             :
              <div style={{display: "flex"}}>
              <Button variant="info" onClick={chooseRooms.bind(this, _id)} style={{height: "30px", width:"100px", alignItems:"center" , marginRight:"3%"}}>

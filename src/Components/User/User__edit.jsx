@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Form, Modal, Row, Col } from 'react-bootstrap';
 import { CustomerContext } from '../../contexts/CustomerContext';
+import ToastUpdate from '../ToastMessage/Toast__update';
 const UserEdit = ({modal, setModal}) => {
     const {
         customerState: {customer},
@@ -37,13 +38,16 @@ const UserEdit = ({modal, setModal}) => {
         setModal(false)
     }
 
+    const [showToast, setToast] = useState(false)
     const UpdateCustomer = async e =>{
         e.preventDefault()
         const message = await updateCustomers(update)
         setModal(false)
+        setToast(true)
     }
     return (
         <div>
+            <ToastUpdate setToast={setToast} showToast={showToast}/>
         <Modal
    show={modal}
    onHide={setModal}

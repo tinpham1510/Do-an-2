@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Alert, Button, Form, Modal } from 'react-bootstrap';
 import { ServiceContext } from '../../contexts/ServiceContext';
+import ToastJS from '../ToastMessage/Toast';
 
 const ServiceAdd = ({modal, setModal}) => {
     const [add, setAdd] = useState({
@@ -20,10 +21,11 @@ const ServiceAdd = ({modal, setModal}) => {
     const AddService = async e =>{
         e.preventDefault()
         const  message  = await addServices(add)
-        alert(message.message)
         setModal(false)
+        setToast(true)
         Clear()
     }
+    const [showToast, setToast] = useState(false)
     function Clear()
     {
         setAdd({
@@ -34,6 +36,7 @@ const ServiceAdd = ({modal, setModal}) => {
     }
     return (
         <div>
+            <ToastJS showToast={showToast} setToast={setToast} />
              <Modal
         show={modal}
         onHide={setModal}

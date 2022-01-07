@@ -15,6 +15,17 @@ const RoomContextProvider = ({children}) =>{
         roomsLoading: true
     })
 
+    const getRoomsStatus = async roomStatus =>{
+        try {
+            const reponse = await axios.get(`${apiUrl}/rooms/status${roomStatus}`)
+            if(reponse)
+            {
+                dispatch({type: ROOM_LOAD_SUCCESS, payload: reponse.data.rooms})
+            }
+        } catch (error) {
+            dispatch({type: ROOM_LOAD_FAILED})
+        }
+    }
     ///
     const getRoomsName = async roomName =>{
         try {
@@ -90,7 +101,7 @@ const RoomContextProvider = ({children}) =>{
             console.log(error)
         }
     }
-    const roomContextData = {roomState, getRooms, deleteRooms, addRooms, findRooms, updateRooms, getRoomsName}
+    const roomContextData = {roomState, getRooms, deleteRooms, addRooms, findRooms, updateRooms, getRoomsName, getRoomsStatus}
     return (
         <RoomContext.Provider value={roomContextData}>
             {children}

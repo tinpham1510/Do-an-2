@@ -7,6 +7,7 @@ import { postContext } from '../../contexts/PostContext';
 import { RoomContext } from '../../contexts/RoomsContext';
 import Listposts from './ListPosts';
 import { ReceiptContext } from '../../contexts/ReceiptContext'
+import ToastJS from '../ToastMessage/Toast';
 const ReceiptsAdd = ({modal, setModal}) => {
     const HandleClose = ()=>{
         Clear()
@@ -63,6 +64,7 @@ const ReceiptsAdd = ({modal, setModal}) => {
         setShow(true)
     }
 
+    const [showToast, setToast] = useState(false)
     const HandleSave = async e =>{
         e.preventDefault()
         let addRe = {
@@ -73,8 +75,8 @@ const ReceiptsAdd = ({modal, setModal}) => {
         }
 
         const message = await addReceipts(addRe)
-        alert(message.message)
         setModal(false)
+        setToast(true)
         Clear()
     }
 
@@ -89,6 +91,7 @@ const ReceiptsAdd = ({modal, setModal}) => {
 
     return (
         <div>
+            <ToastJS showToast={showToast} setToast={setToast} />
         <Modal
    show={modal}
    onHide={setModal}

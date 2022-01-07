@@ -19,6 +19,8 @@ import Electric from '../Components/Electric/Electric';
 import Water from '../Components/Water/Water';
 import ListUser from '../Components/User/ListUser';
 import Total from '../Components/Total/Total';
+import Detail from '../Components/Detail/Detail';
+import Admin from '../Components/Admin/Admin';
 const Homepage = () => {
     const history = useHistory()
     const settings = {
@@ -32,7 +34,7 @@ const Homepage = () => {
     const {
         logoutUser
     } = useContext(AuthContext)
-    
+    const [modal, setModal] = useState(false)
     useEffect(()=>{
         axios({
             method: "GET",
@@ -49,6 +51,10 @@ const Homepage = () => {
     function HandleLogout (){
         logoutUser()
         history.push('/Login')
+    }
+
+    const start = () =>{
+        setModal(true)
     }
     function ScaleNav(){
         /*document.getElementById("sidebar").style.width = "80px";
@@ -172,7 +178,7 @@ const Homepage = () => {
                     <span className="tooltip">Info</span>                    
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/Homepage/Bill">
                     <i class='bx bx-diamond' ></i>
                     <span className="links_name">Hóa đơn</span>
                         </a>
@@ -203,7 +209,7 @@ const Homepage = () => {
                 <div className="profile_content">
                     <div className="profile">
                         <div className="profile_details">
-                            <img src={img2}/>
+                            <img onClick={start} src={img2}/>
                             <div className="name_jobs">
                                
                                 <div className="name">
@@ -242,12 +248,13 @@ const Homepage = () => {
                 <Route key="Electric" exact path ="/Homepage/Electric" component={Electric} />
                 <Route key="Water" exact path ="/Homepage/Water" component={Water} />
                 <Route key="Total" exact path ="/Homepage/Total" component={Total} />
+                <Route key="Bill" exact path ="/Homepage/Bill" component={Detail} />
                 </Switch>    
         </Router>
                 
             </div>
         </div>
-        
+        <Admin modal={modal} setModal={setModal}/>
         </body>
         
        
